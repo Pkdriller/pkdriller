@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Marisel Bot Interface</title>
+  <title>Pkdriller Bot Interface</title>
   <style>
     /* ===== GLOBAL STYLES ===== */
     * {
@@ -183,14 +183,14 @@
 </head>
 <body>
   <div class="container">
-    <h1>Marisel Bot</h1>
+    <h1>Nexus-xmd Bot</h1>
     <p class="subtitle">Interact with the bot or support the developer below</p>
 
     <!-- Action Buttons -->
-    <button onclick="window.open('https://chat.whatsapp.com/CRmhHlDBfdTHLnMqlIfHGK', '_blank')">Join Group Chat</button>
-    <button onclick="window.open('https://whatsapp.com/channel/0029Vajvy2kEwEjwAKP4SI0x', '_blank')">Follow Channel</button>
-    <button onclick="window.open('https://youtube.com/@wemacomic', '_blank')">Subscribe to YouTube</button>
-    <button onclick="window.open('https://wa.me/254740007567', '_blank')">Support Developer</button>
+    <button onclick="window.open('https://chat.whatsapp.com/F4uAleX0cwL82UqZ5MvLjr', '_blank')">Join Group Chat</button>
+    <button onclick="window.open('https://whatsapp.com/channel/0029Vad7YNyJuyA77CtIPX0x', '_blank')">Follow Channel</button>
+    <button onclick="window.open('https://www.youtube.com/@Pktech-1911', '_blank')">Subscribe to YouTube</button>
+    <button onclick="window.open('https://wa.me/254785392165', '_blank')">Support Developer</button>
     <button onclick="shareToFriend()">Share with Friends</button>
 
     <!-- Digital Clock -->
@@ -247,12 +247,12 @@
 
     // Share Function
     function shareToFriend() {
-      const shareText = "Check out Marisel Bot! Join the channel here:\nhttps://whatsapp.com/channel/0029Vajvy2kEwEjwAKP4SI0x";
+      const shareText = "Check out Nexus-xmd Bot! Join the channel here:\nhttps://whatsapp.com/channel/0029Vajvy2kEwEjwAKP4SI0x";
       if (navigator.share) {
         navigator.share({
           title: 'Marisel Bot',
           text: shareText,
-          url: 'https://whatsapp.com/channel/0029Vajvy2kEwEjwAKP4SI0x'
+          url: 'https://whatsapp.com/channel/0029Vad7YNyJuyA77CtIPX0x'
         }).catch(err => {
           console.log('Error sharing:', err);
           fallbackShare(shareText);
