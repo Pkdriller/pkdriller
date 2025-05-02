@@ -1,285 +1,288 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Pkdriller Bots Interface</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>PK TECH WhatsApp Bot</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
   <style>
-    /* ===== GLOBAL STYLES ===== */
-    * {
+    body {
       margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
+      font-family: 'Orbitron', sans-serif;
+      background-color: #0d0d0d;
+      color: #00ffea;
+      overflow-x: hidden;
     }
-
-    /* ===== BASE LAYOUT ===== */
-    body, html {
-      width: 100%;
-      height: 100%;
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      color: #e0e0e0;
-      background: #0a0a0a;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-    }
-
-    /* ===== MAIN CONTAINER ===== */
-    .container {
-      width: 92%;
-      max-width: 480px;
-      padding: 2rem;
-      background: rgba(18, 18, 24, 0.85);
-      border-radius: 14px;
-      border: 1px solid rgba(0, 230, 180, 0.35);
-      box-shadow: 
-        0 0 12px rgba(0, 200, 160, 0.2),
-        0 0 3px rgba(0, 0, 0, 0.3) inset;
-      backdrop-filter: blur(10px);
-      margin: 1.2rem;
-    }
-
-    /* ===== TYPOGRAPHY ===== */
-    h1 {
-      font-size: 2.3rem;
-      font-weight: 600;
-      margin-bottom: 0.4rem;
-      color: #00e6c3;
-      text-shadow: 0 0 12px rgba(0, 230, 180, 0.4);
-      letter-spacing: 0.5px;
-    }
-
-    .subtitle {
-      font-size: 1.05rem;
-      margin-bottom: 1.8rem;
-      color: rgba(220, 220, 220, 0.85);
-      font-weight: 400;
-      line-height: 1.4;
-    }
-
-    /* ===== BUTTON STYLES ===== */
-    button {
-      width: 100%;
-      padding: 14px;
-      margin: 0.45rem 0;
-      background: rgba(10, 15, 20, 0.45);
-      border: 1.2px solid rgba(0, 210, 170, 0.5);
-      border-radius: 8px;
-      color: #f0f0f0;
-      font-family: 'Segoe UI', sans-serif;
-      font-size: 1.05rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
-      outline: none;
-    }
-
-    button:hover {
-      background: rgba(0, 180, 140, 0.15);
-      border-color: rgba(0, 230, 180, 0.7);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0, 200, 160, 0.2);
-    }
-
-    button:active {
-      transform: translateY(0);
-      transition-duration: 0.1s;
-    }
-
-    /* ===== DIGITAL CLOCK ===== */
-    .digital-clock {
-      margin-top: 1.8rem;
-      display: flex;
-      align-items: baseline;
-      justify-content: center;
-      gap: 0.12rem;
-      font-family: 'Segoe UI', system-ui, sans-serif;
-    }
-
-    .digital-clock span {
-      padding: 0.15rem;
-      line-height: 1;
-    }
-
-    #hours, #minutes {
-      font-size: 2.4rem;
-      font-weight: 600;
-      color: #ffffff;
-      background: rgba(30, 35, 40, 0.45);
-      border-radius: 5px;
-      padding: 0.25rem 0.4rem;
-      min-width: 1.8em;
-      text-align: center;
-    }
-
-    #seconds {
-      font-size: 2.4rem;
-      font-weight: 700;
-      color: #00ffcc;
-      text-shadow: 0 0 10px rgba(0, 255, 200, 0.5);
-      background: rgba(0, 25, 20, 0.4);
-      border-radius: 5px;
-      padding: 0.25rem 0.3rem;
-      min-width: 1.8em;
-      text-align: center;
-    }
-
-    .colon {
-      font-size: 2.2rem;
-      font-weight: 400;
-      color: rgba(180, 180, 180, 0.7);
-      padding: 0 0.1rem;
-      align-self: center;
-    }
-
-    #ampm {
-      font-size: 1.05rem;
-      font-weight: 500;
-      color: rgba(180, 180, 180, 0.9);
-      margin-left: 0.6rem;
-      align-self: flex-end;
-      margin-bottom: 0.45rem;
-      letter-spacing: 0.5px;
-    }
-
-    /* ===== TIME FORMAT TOGGLE ===== */
-    .format-toggle {
-      display: flex;
-      justify-content: center;
-      margin-top: 1rem;
-      gap: 1rem;
-    }
-
-    .format-btn {
+    #bgVideo {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      min-width: 100vw;
+      min-height: 100vh;
       width: auto;
-      padding: 8px 16px;
-      font-size: 0.9rem;
+      height: auto;
+      z-index: -1;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
     }
-
-    .format-btn.active {
-      background: rgba(0, 180, 140, 0.3);
-      border-color: #00e6c3;
+    header {
+      text-align: center;
+      padding: 60px 20px 30px;
+      background: rgba(0, 0, 0, 0.6);
+      animation: fadeIn 2s ease-in-out;
     }
-
-    /* ===== RESPONSIVE ADJUSTMENTS ===== */
-    @media (max-width: 480px) {
-      .container {
-        padding: 1.6rem;
-        border-radius: 12px;
-      }
-      
-      h1 {
-        font-size: 2rem;
-      }
-      
-      .digital-clock span {
-        font-size: 90%;
-      }
+    header img {
+      width: 120px;
+      border-radius: 50%;
+      margin-bottom: 20px;
+    }
+    header h1 {
+      font-size: 3em;
+      color: #00ffff;
+      animation: pulse 2s infinite;
+    }
+    header p {
+      font-size: 1.2em;
+      font-weight: 500;
+    }
+    #clock {
+      font-size: 1.2em;
+      margin-top: 10px;
+    }
+    section {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 30px;
+      margin: 20px auto;
+      border-radius: 15px;
+      max-width: 850px;
+      text-align: center;
+      animation: fadeInUp 1s ease;
+    }
+    h2 {
+      color: #00ff88;
+    }
+    .btn {
+      padding: 15px 30px;
+      font-size: 18px;
+      background: #00ff88;
+      border: none;
+      border-radius: 8px;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      margin: 10px;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: none;
+      background: #333;
+      color: #00ffea;
+    }
+    .form-section {
+      display: none;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: rgba(0, 0, 0, 0.6);
+      margin-top: 30px;
+      color: #ccc;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
 </head>
 <body>
-  <div class="container">
-    <h1>Dev pkdriller</h1>
-    <p class="subtitle">Interact with the bot or support the developer below</p>
 
-    <!-- Action Buttons -->
-    <button onclick="window.open('https://chat.whatsapp.com/F4uAleX0cwL82UqZ5MvLjr', '_blank')">Join Group Chat</button>
-    <button onclick="window.open('https://github.com/Pkdriller/NEXUS-XMD/fork', '_blank')">Fork nexus bot</button>
-    <button onclick="window.open('https://whatsapp.com/channel/0029Vad7YNyJuyA77CtIPX0x', '_blank')">Follow Channel</button>
-    <button onclick="window.open('https://www.youtube.com/@Pktech-1911', '_blank')">Subscribe to YouTube</button>
-    <button onclick="window.open('https://github.com/Pkdriller', '_blank')">Follow me GitHub</button>
-    <button onclick="window.open('https://wa.me/254785392165', '_blank')">Buy bot from developer</button>
-    <button onclick="shareToFriend()">Share with Friends</button>
+<video id="bgVideo" autoplay loop muted playsinline>
+  <source src="https://www.dropbox.com/scl/fi/5ram6pa7mglz2c2orf5uy/Live-Wallpaper1742261663420.mp4?rlkey=irpy79sb82d99zyevq0wi8bkb&st=dq1kp906&raw=1" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
-    <!-- Digital Clock -->
-    <div class="digital-clock">
-      <span id="hours">00</span><span class="colon">:</span><span id="minutes">00</span><span class="colon">:</span><span id="seconds">00</span>
-      <span id="ampm">AM</span>
-    </div>
+<div style="position:fixed;top:20px;right:20px;z-index:1000;">
+  <button onclick="document.getElementById('bgMusic').muted = false" style="padding:8px;border:none;border-radius:50%;background:#00ff88;color:#000;">
+    <i class="fas fa-volume-up"></i>
+  </button>
+  <button onclick="document.getElementById('bgMusic').muted = true" style="padding:8px;border:none;border-radius:50%;background:#ff0066;color:#fff;margin-left:5px;">
+    <i class="fas fa-volume-mute"></i>
+  </button>
+</div>
 
-    <!-- Time Format Toggle -->
-    <div class="format-toggle">
-      <button id="12hrBtn" class="format-btn active" onclick="setTimeFormat(12)">12-Hour</button>
-      <button id="24hrBtn" class="format-btn" onclick="setTimeFormat(24)">24-Hour</button>
-    </div>
+<header>
+  <img src="https://i.ibb.co/spcdSHvh/nexus-xmd.jpg" alt="PK TECH Logo"/>
+  <h1>PK TECH WhatsApp Bot</h1>
+  <p>Get yours now for only <strong>KES 100</strong></p>
+  <div id="clock"></div>
+</header>
+
+<section>
+  <h2>Place Your Order</h2>
+  <button class="btn" onclick="showForm()">PLACE ORDER</button>
+</section>
+
+<section class="form-section" id="formSection">
+  <h2>Fill Your Order Details</h2>
+  <form onsubmit="showConfirmation(event)">
+    <input type="text" placeholder="Your Name" required/>
+    <input type="text" placeholder="WhatsApp Number" required/>
+    <input type="email" placeholder="Email (Optional)"/>
+    <textarea rows="4" placeholder="Custom Notes or Request..."></textarea>
+    <button class="btn" type="submit">Continue</button>
+  </form>
+</section>
+
+<section>
+  <h2>Source Code</h2>
+  <p><strong>PK-XMD Bot:</strong></p>
+  <a href="https://github.com/Pkdriller/PK-XMD" target="_blank">
+    <button class="btn">View PK-XMD on GitHub</button>
+  </a>
+  <p><strong>NEXUS-XMD Bot:</strong></p>
+  <a href="https://github.com/Pkdriller/NEXUS-XMD" target="_blank">
+    <button class="btn" style="background:#00ffff;">View NEXUS-XMD on GitHub</button>
+  </a>
+</section>
+
+<section>
+  <audio id="bgMusic" autoplay></audio>
+</section>
+
+<script>
+  const audioElement = document.getElementById('bgMusic');
+  const songs = [
+    "https://www.dropbox.com/scl/fi/5qs6cv6uavenljyyd3krp/menu4.mp3?rlkey=siugyn6b197fu1w53an7penpr&st=wwcf1po9&raw=1",
+    "https://www.dropbox.com/scl/fi/d7kgf6o885lqvv945b6l3/menu3.mp3?rlkey=g4f5qzlaae5e7s2wrao9tcsoi&st=850b10jp&raw=1",
+    "https://www.dropbox.com/scl/fi/8v5crayltc8ri1ro6ucdz/menu2.mp3?rlkey=ywyp2wjyadc9c7s8dp67p8y7c&st=9xflt21z&raw=1"
+  ];
+  let currentSongIndex = 0;
+
+  // Set initial song
+  audioElement.src = songs[currentSongIndex];
+  audioElement.play();
+
+  // When a song ends, move to the next one
+  audioElement.addEventListener('ended', function () {
+    currentSongIndex = (currentSongIndex + 1) % songs.length;
+    audioElement.src = songs[currentSongIndex];
+    audioElement.play();
+  });
+</script>
+
+<section>
+  <h2>Connect with PK DRILLER</h2>
+  <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:15px;margin-top:20px;">
+    <a class="btn" href="https://wa.me/254785392165" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    <a class="btn" href="https://t.me/dev_pkdrillerbot" style="background:#34ace0;" target="_blank"><i class="fab fa-telegram"></i> Telegram</a>
+    <a class="btn" href="https://www.instagram.com/pk_tech01?igsh=MTM0Y2p3ZHpxMXZraA==" style="background:#e1306c;" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+    <a class="btn" href="https://www.facebook.com/profile.php?id=100091580206517" style="background:#3b5998;" target="_blank"><i class="fab fa-facebook"></i> Facebook</a>
+    <a class="btn" href="https://www.youtube.com/@Pktech-1911" style="background:#ff0000;" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
   </div>
+</section>
 
-  <script>
-    let timeFormat = 12; // Default to 12-hour format
+<footer>
+  © 2025 PK TECH | WhatsApp: +254 785 392165 | All rights reserved.
+</footer>
 
-    // Digital Clock Function
-    function updateClock() {
-      const now = new Date();
-      let hours = now.getHours();
-      const minutes = now.getMinutes().toString().padStart(2, '0');
-      const seconds = now.getSeconds().toString().padStart(2, '0');
-      let ampm = '';
+<script>
+  function updateClock() {
+    const now = new Date();
+    const timeString = now.toLocaleTimeString();
+    document.getElementById("clock").textContent = "Current Time: " + timeString;
+  }
+  setInterval(updateClock, 1000);
+  updateClock();
 
-      if (timeFormat === 12) {
-        ampm = hours >= 12 ? 'PM' : 'AM';
-        hours = hours % 12;
-        hours = hours ? hours : 12; // Convert 0 to 12
-      } else {
-        // 24-hour format
-        ampm = '';
+  function showForm() {
+    document.getElementById("formSection").style.display = "block";
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+  }
+
+  function showConfirmation(e) {
+    e.preventDefault();
+    const newTab = window.open('', '_blank');
+    newTab.document.write(`
+      <html>
+      <head>
+        <title>Order Confirmed - PK TECH</title>
+        <style>
+          body {
+            background-color: #0d0d0d;
+            color: #00ffea;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            padding: 50px;
+          }
+          .container {
+            background: #1a1a1a;
+            padding: 40px;
+            border-radius: 15px;
+            max-width: 600px;
+            margin: auto;
+          }
+          h2 {
+            color: #00ff88;
+          }
+          p {
+            margin: 10px 0;
+          }
+          a {
+            display: inline-block;
+            margin: 10px auto;
+            padding: 15px;
+            background: #00ff88;
+            color: #000;
+            font-weight: bold;
+            border-radius: 8px;
+            text-decoration: none;
+          }
+          a:hover {
+            background: #00cc99;
+          }
+        </style>
+      </head>
+      <body>
+        <div class="container">
+          <h2>Payment Instructions</h2>
+          <p><strong>Send KES 100 to:</strong></p>
+          <p><strong>Number:</strong> 254785392165</p>
+          <p><strong>Name:</strong> Benard Wangari</p>
+          <p>After payment, click below:</p>
+          <a href="https://wa.me/254785392165?text=Hi%2C+I+have+paid+KES+100+for+PK+TECH+Bot" target="_blank">Confirm via WhatsApp</a>
+          <a href="https://pkxmdverificationweb.vercel.app/Pkdriller" target="_blank">Go to Deployment</a>
+        </div>
+      </body>
+      </html>
+    `);
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    let firstInteraction = () => {
+      let music = document.getElementById('bgMusic');
+      if (music) {
+        music.muted = false;
+        music.play().catch(() => {});
+        document.removeEventListener('click', firstInteraction);
       }
+    };
+    document.addEventListener('click', firstInteraction);
+  });
+</script>
 
-      // Update the DOM
-      document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-      document.getElementById('minutes').textContent = minutes;
-      document.getElementById('seconds').textContent = seconds;
-      document.getElementById('ampm').textContent = ampm;
-    }
-
-    // Set time format (12 or 24 hour)
-    function setTimeFormat(format) {
-      timeFormat = format;
-      document.getElementById('12hrBtn').classList.toggle('active', format === 12);
-      document.getElementById('24hrBtn').classList.toggle('active', format === 24);
-      updateClock();
-    }
-
-    // Initialize clock and update every second
-    updateClock();
-    setInterval(updateClock, 1000);
-
-    // Share Function
-    function shareToFriend() {
-      const shareText = "Check out Nexus-xmd Bot channel! Join the channel here:\nhttps://whatsapp.com/channel/0029Vad7YNyJuyA77CtIPX0x";
-      if (navigator.share) {
-        navigator.share({
-          title: 'Nexus Bot',
-          text: shareText,
-          url: 'https://whatsapp.com/channel/0029Vad7YNyJuyA77CtIPX0x'
-        }).catch(err => {
-          console.log('Error sharing:', err);
-          fallbackShare(shareText);
-        });
-      } else {
-        fallbackShare(shareText);
-      }
-    }
-
-    function fallbackShare(text) {
-      const textarea = document.createElement('textarea');
-      textarea.value = text;
-      textarea.style.position = 'fixed';
-      document.body.appendChild(textarea);
-      textarea.select();
-      
-      try {
-        document.execCommand('copy');
-        alert('Link copied to clipboard!');
-      } catch (err) {
-        prompt('Copy this link to share:', text);
-      }
-      
-      document.body.removeChild(textarea);
-    }
-  </script>
 </body>
-        </html>
+</html>
